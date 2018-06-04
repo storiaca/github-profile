@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, MenuItem, NavDropdown, Table } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
 
-import Slider from './Slider';
 import Profile from './Profile';
+import SliderComponent from './SliderComponent';
 
 class App extends Component {
 	constructor(props) {
@@ -27,7 +27,7 @@ class App extends Component {
         </Navbar>
 
 				<div className="container">
-					{ this.state.currentTab === 'slider' ? <Slider /> : false }
+					{ this.state.currentTab === 'slider' ? <SliderComponent /> : false }
 					{ this.state.currentTab === 'profile' ? <Profile /> : false }
 					
 				</div>
