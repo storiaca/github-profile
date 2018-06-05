@@ -3,7 +3,7 @@ export const PROFILE_EDITED = 'PROFILE_EDITED';
 
 export function fetchProfile() {
   return(dispatch) => {
-		let header = new Headers({"Content-Type":"application/json", "Authorization": "token 7e5d634d9631fa8a5061b3c19e10cd937df39549"});
+		let header = new Headers({"Content-Type":"application/json", "Authorization": "token 07c9e85a1b14af32eee95de31fc34a8143ce4c35"});
 		return fetch('https://api.github.com/users/storiaca', {
 			method: 'GET',
 			headers: header
