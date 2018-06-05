@@ -10,7 +10,13 @@ class Profile extends Component {
 		}
 	}
 	componentDidMount() {
-		
+		this.props.fetchProfile();
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			userInfo: nextProps.profile
+		})
 	}
 
 	updateValue(type, event) {
