@@ -13,9 +13,9 @@ class Profile extends Component {
 			error: false
 		}
 	}
-	componentDidMount() {
-		this.props.fetchProfile();
-	}
+	// componentDidMount() {
+	// 	this.props.fetchProfile();
+	// }
 
 	componentWillReceiveProps(nextProps) {
 		this.setState({
@@ -53,7 +53,9 @@ class Profile extends Component {
 		return (
 			<div>
 				<h1>Profile</h1>
-				<Button bsStyle="primary" onClick={() => this.setState({editing : !this.state.editing})}>Edit</Button>
+				<Button bsStyle="primary" onClick={() => this.setState({editing : !this.state.editing})}>
+					{this.state.editing ? 'Cancel Edit' : 'Edit'}
+				</Button>
 				<hr/>
 				{this.state.editing ? 
 					<form>

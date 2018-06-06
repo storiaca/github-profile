@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
 import Profile from '../containers/Profile';
 import SliderComponent from '../containers/Slider';
@@ -9,8 +9,12 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentTab : 'profile'
+			currentTab : 'slider'
 		}
+	}
+
+	componentDidMount() {
+		this.props.fetchProfile();
 	}
   render() {
 		return (
@@ -18,7 +22,7 @@ class App extends Component {
 				<Navbar inverse collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#home">Github Profile</a>
+              <a href="#" onClick={() => this.setState({currentTab: 'slider'})}>Github Profile</a>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav pullRight>
