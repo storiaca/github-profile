@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import Slider from "react-slick";
 
+import { slickSlider } from '../style.css';
+
 class SliderComponent extends Component {
   render() {
 		var settings = {
@@ -12,7 +14,7 @@ class SliderComponent extends Component {
 			slidesToScroll: 1
     };
 		return (
-			<div>
+			<div className={slickSlider}>
 				<Slider {...settings}>
 					<div><h3>{this.props.profile.name}</h3></div>
 					<div><img src={this.props.profile.avatar_url} alt="Avatar"/></div>

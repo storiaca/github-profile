@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 
 import { FormGroup, FormControl, Button, ControlLabel } from 'react-bootstrap';
+
+import { redBorder } from '../style.css';
+
 class Profile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			userInfo: {},
-			editing: false
+			userInfo: this.props.profile,
+			editing: false,
+			error: false
 		}
 	}
 	componentDidMount() {
@@ -26,6 +30,25 @@ class Profile extends Component {
 			userInfo: userInfoCopy
 		})
 	}
+
+	saveProfile() {
+		let error = false;
+		const propertiesToCheck = ['name', 'bio', 'location', 'company'];
+
+		for(let term of propertiesToCheck) {
+			if(this.state.userInfo[term] === '') {
+				error = true;
+			}
+		}
+
+		if(!error) {
+			this.props.saveProfile(this.state.userInfo);
+		}
+		this.setState({
+			error
+		});
+	}
+
   render() {
 		return (
 			<div>
@@ -38,6 +61,7 @@ class Profile extends Component {
 						<ControlLabel>Name</ControlLabel>
 						<FormControl
 							type="text"
+							className={this.state.error&&this.state.userInfo.name === '' ? redBorder : ''}
 							value={this.state.userInfo.name}
 							placeholder="Enter text"
 							onChange={this.updateValue.bind(this, 'name')}
@@ -47,6 +71,7 @@ class Profile extends Component {
 						<ControlLabel>Bio</ControlLabel>
 						<FormControl
 							type="text"
+							className={this.state.error && this.state.userInfo.bio === '' ? redBorder : ''}
 							value={this.state.userInfo.bio}
 							placeholder="Enter text"
 							onChange={this.updateValue.bind(this, 'bio')}
@@ -56,6 +81,7 @@ class Profile extends Component {
 						<ControlLabel>Location</ControlLabel>
 						<FormControl
 							type="text"
+							className={this.state.error && this.state.userInfo.location === '' ? redBorder : ''}
 							value={this.state.userInfo.location}
 							placeholder="Enter loation"
 							onChange={this.updateValue.bind(this, 'location')}
@@ -65,11 +91,13 @@ class Profile extends Component {
 						<ControlLabel>Company</ControlLabel>
 						<FormControl
 							type="text"
+							className={this.state.error && this.state.userInfo.company === '' ? redBorder : ''}
 							value={this.state.userInfo.company}
 							placeholder="Enter text"
 							onChange={this.updateValue.bind(this, 'company')}
 						/>
 					</FormGroup>
+					<Button bsStyle="info" onClick={this.saveProfile.bind(this)}>Save</Button>
       	</form>
 				:
 				 <div>
